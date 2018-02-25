@@ -1,0 +1,99 @@
+<ion-header>
+  <ion-navbar>
+    <ion-buttons end>
+      <button ion-button icon-only [navPush]="addPlacePage">
+        <ion-icon name="add"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title>
+      Awesome Places
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+   <ion-card-title>
+        {{ post.title }}
+      </ion-card-title>
+  <p class="meta">Posted in <a href="/categories/show/{{post.category}}">{{post.category}} </a>by {{post.author}} on <ion-datetime displayFormat="MM/DD/YYYY" [(ngModel)]="post.date"></ion-datetime></p>
+  <ion-card>
+    <img src="http://localhost:3000/images/{{post.mainimage}}">
+    <ion-card-content text-left>
+     
+       <div class="discription" [innerHTML]="post.body" ></div>
+
+<!--  <ion-row >
+      <ion-col>
+        <sebm-google-map
+          [latitude]="post.location.lat"
+          [longitude]="post.location.lng"
+          [zoom]="16">
+          <sebm-google-map-marker
+            [latitude]="post.location.lat"
+            [longitude]="post.location.lng"></sebm-google-map-marker>
+        </sebm-google-map>
+      </ion-col>
+    </ion-row>  -->
+       <h3 class="comment-title">Comments</h3>
+        <div *ngFor="let comment of post.comments; let i = index">
+          <hr>
+    <div text-left>
+     <div class="comment"><p class="comment-name">{{comment.name}}</p><p class="comment-body">{{comment.body}}</p></div>
+    </div>
+  </div>
+    </ion-card-content>
+  </ion-card>
+
+
+   <ion-card>
+     <h3 padding class="comment-title">Add Comments</h3>
+   <form #f="ngForm" (ngSubmit)="onSubmit(f)">
+    <ion-list>
+      <ion-item>
+        <ion-label fixed>Name</ion-label>
+        <ion-input
+          type="text"
+          placeholder="Name"
+          name="name"
+          ngModel
+          required></ion-input>
+      </ion-item>
+        <ion-item>
+        <ion-label fixed>Email</ion-label>
+        <ion-input
+          type="email"
+          placeholder="Email"
+          name="email"
+          ngModel
+          required></ion-input>
+      </ion-item>
+     
+      <ion-item>
+        <ion-label floating>Comment Text</ion-label>
+        <ion-textarea
+          name="body"
+          ngModel
+          required></ion-textarea>
+      </ion-item>
+    </ion-list>
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <button
+            ion-button
+            color="secondary"
+            block
+            type="submit"
+            [disabled]="!f.valid">
+            Add Comment
+          </button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </form>
+   </ion-card>
+</ion-content>
+
+
+ 
+ 

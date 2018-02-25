@@ -1,0 +1,14 @@
+{
+  "name": "ionic2-course",
+  "app_id": "",
+  "proxies": [
+    {
+      "path": "/api",
+      "proxyUrl": "https://*****/api"
+    }
+  ],
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "ionic-angular"
+}
