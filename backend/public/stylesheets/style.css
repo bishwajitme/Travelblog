@@ -1,19 +1,17 @@
 body.container {
-	font: 15px Helvetica, Arial, sans-serif;
-	background: #fff4b0;
-	color:#666;
+  font: 15px Helvetica, Arial, sans-serif;
+  background: #fff4b0;
+  color:#666;
 }
 
 .logo{
-	text-align: center;
-	margin:auto;
-	display:block;
-	height: 150px;
-	width: 100%;
-
 }
 
 .container.logo{
+	text-align: center;
+	display:block;
+	height: 120px;
+	width: 40%;
 }
 
 .container.nav{
@@ -23,7 +21,6 @@ body.container {
 
 .container{
 	width: 95%;
-	border: 1px solid #ccc;
 	margin: auto;
 	padding:20px;
 }
@@ -70,7 +67,7 @@ nav{
 }
 
 nav li{
-	padding-left: 15%;
+	margin-left: 18%;
 	width: 50px;
 	display: inline-block;
 	list-style:none;
@@ -161,12 +158,19 @@ textarea{
 ul.success li{
 	padding: 15px;
 	margin-top:10px;
-	margin-bottom: 20px;
-	border: 1px solid transparent;
-	border-radius: 4px;
-	color: #3c763d;
-	background-color: #dff0d8;
-	border-color: #d6e9c6;
-	list-style:none;
+  	margin-bottom: 20px;
+  	border: 1px solid transparent;
+  	border-radius: 4px;
+  	color: #3c763d;
+  	background-color: #dff0d8;
+  	border-color: #d6e9c6;
+  	list-style:none;
+}
+
+.container.weather {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	width: 50%;
 }
 
