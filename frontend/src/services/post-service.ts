@@ -1,14 +1,15 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers } from '@angular/http';
 import 'rxjs/add/operator/map';
+import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer';
  
 @Injectable()
 export class Posts {
  
   data: any;
   singledata:any;
- 
-  constructor(public http: Http) {
+
+  constructor(public http: Http, private transfer: FileTransfer) {
     this.data = null;
     this.singledata= null;
   }
@@ -21,7 +22,7 @@ export class Posts {
  
     return new Promise(resolve => {
  
-      this.http.get('http://localhost:3000/api/posts')
+      this.http.get('https://trablog.herokuapp.com/api/posts')
         .map(res => res.json())
         .subscribe(data => {
           this.data = data;
@@ -39,7 +40,7 @@ export class Posts {
  
     return new Promise(resolve => {
  
-      this.http.get('http://localhost:3000/posts/api/show/'+id)
+      this.http.get('https://trablog.herokuapp.com/posts/api/show/'+id)
         .map(res => res.json())
         .subscribe(singledata => {
           this.singledata = singledata;
@@ -55,28 +56,52 @@ export class Posts {
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
    console.log(newComment);
-    this.http.post('http://localhost:3000/posts/api/addcomment', JSON.stringify(newComment), {headers: headers})
+    this.http.post('https://trablog.herokuapp.com/posts/api/addcomment', JSON.stringify(newComment), {headers: headers})
       .subscribe(res => {
         console.log(res.json());
       });
  
   }
+    uploadImage(img, newPost) {
+
+        // Destination URL
+        let url = 'https://trablog.herokuapp.com/posts/api/add';
+
+        // File for Upload
+        var targetPath = img;
+
+        const fileTransfer: FileTransferObject = this.transfer.create();
+        var options: FileUploadOptions = {
+            fileKey: 'image',
+            chunkedMode: false,
+            mimeType: 'multipart/form-data',
+            headers: {},
+            params: newPost
+        };
+
+
+
+        // Use the FileTransfer to upload the image
+        return fileTransfer.upload(targetPath, url, options);
+    }
+
+
 
   addPost(newPost){
  
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
    console.log(newPost);
-    this.http.post('http://localhost:3000/posts/api/add', JSON.stringify(newPost), {headers: headers})
+    this.http.post('https://trablog.herokuapp.com/posts/api/add', JSON.stringify(newPost), {headers: headers})
       .subscribe(res => {
         console.log(res.json());
       });
  
   }
  
-  deleteReview(id){
+  deletePost(id){
  
-    this.http.delete('http://localhost:3000/api/reviews/' + id).subscribe((res) => {
+    this.http.delete('https://trablog.herokuapp.com/posts/api/delete/' + id).subscribe((res) => {
       console.log(res.json());
     });   
  

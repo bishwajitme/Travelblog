@@ -24,6 +24,18 @@ router.get('/api/show/:id', function(req, res, next) {
     });
 });
 
+router.delete('/api/delete/:id', function(req, res, next) {
+    var posts = db.get('posts');
+    var id = req.params.id;
+    console.log('id' + id);
+    // posts.remove({"_id": db.id(id)});
+    posts.remove({"_id": id});
+    // posts.removeById(id);
+    res.json({"id":id});
+
+});
+
+
 router.get('/add', function(req, res, next) {
 	var categories = db.get('categories');
 
@@ -85,7 +97,7 @@ router.post('/add', upload.single('mainimage'), function(req, res, next) {
 
 
 
-router.post('/api/add', function(req, res, next) {
+router.post('/api/add', upload.single('image'), function(req, res, next) {
     // Get Form Values
     var title = req.body.title;
     var category= req.body.category;
@@ -133,6 +145,24 @@ router.post('/api/add', function(req, res, next) {
 });
 
 
+router.post('/images', upload.single('image'), function(req, res, next)  {
+    console.log("call image uploading api");
+    if(req.file){
+        var mainimage = req.file.filename
+    } else {
+        var mainimage = 'noimage.jpg';
+    }
+    var images = db.get('images');
+    images.insert({
+        "mainimage": mainimage,
+    }, function(err, post){
+        if(err){
+            res.send({"image":mainimage});
+        } else {
+            res.json({"image":mainimage});
+        }
+    });
+});
 
 router.post('/addcomment', function(req, res, next) {
   // Get Form Values

@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "/Users/bishwajithalder/ionic/awesomeplace/platforms/android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values/values.xml",
+            "outputFile": "/Users/bishwajithalder/ionic/travelblog/frontend/platforms/android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values/values.xml",
             "map": [
                 {
-                    "source": "/Users/bishwajithalder/ionic/awesomeplace/platforms/android/app/src/main/res/values/strings.xml",
+                    "source": "/Users/bishwajithalder/ionic/travelblog/frontend/platforms/android/app/src/main/res/values/strings.xml",
                     "from": {
                         "startLines": "4,2,3",
                         "startColumns": "4,4,4",

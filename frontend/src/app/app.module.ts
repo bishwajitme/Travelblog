@@ -20,6 +20,7 @@ import { PlacesService } from "../services/places";
 import {Posts}  from "../services/post-service";
 import { TwitterService } from 'ng2-twitter';
 import { Base64 } from '@ionic-native/base64';
+import { FileTransfer } from '@ionic-native/file-transfer';
 
 @NgModule({
   declarations: [
@@ -58,7 +59,8 @@ import { Base64 } from '@ionic-native/base64';
     PlacesService,
       TwitterService,
       Base64,
-      Posts
+      Posts,
+      FileTransfer
   ]
 })
 export class AppModule {

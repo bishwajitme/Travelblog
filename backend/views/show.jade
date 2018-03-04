@@ -10,7 +10,7 @@ block content
      img(src='/images/#{post.mainimage}')
      !=post.body
      br
-     hr
+
      if post.comments
       h3 Comments
       each comment, i in post.comments
@@ -18,7 +18,7 @@ block content
         p.comment-name #{comment.name}
         p.comment-body #{comment.body}
       br
-    h3 Add Comment
+    h3.comment Add Comment
     if errors
      ul.errors
       each error, i in errors
@@ -32,7 +32,7 @@ block content
       label Email
       input.form-control(type='text', name='email')
      .form-group
-      label Body
+      label Your Comment
       textarea.form-control(type='text', name='body')
      br
      input.btn.btn-default(type='submit', name='submit',value='Add Comment')

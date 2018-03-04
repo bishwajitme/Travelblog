@@ -17,23 +17,23 @@
       </ion-card-title>
   <p class="meta">Posted in <a href="/categories/show/{{post.category}}">{{post.category}} </a>by {{post.author}} on <ion-datetime displayFormat="MM/DD/YYYY" [(ngModel)]="post.date"></ion-datetime></p>
   <ion-card>
-    <img src="http://localhost:3000/images/{{post.mainimage}}">
+    <img src="https://trablog.herokuapp.com/images/{{post.mainimage}}">
     <ion-card-content text-left>
      
        <div class="discription" [innerHTML]="post.body" ></div>
 
-<!--  <ion-row >
+<!-- <ion-row >
       <ion-col>
         <sebm-google-map
-          [latitude]="post.location.lat"
-          [longitude]="post.location.lng"
+          [latitude]="post[location][lat]"
+          [longitude]="post[location][lng]"
           [zoom]="16">
           <sebm-google-map-marker
-            [latitude]="post.location.lat"
-            [longitude]="post.location.lng"></sebm-google-map-marker>
+                  [latitude]="post[location][lat]"
+                  [longitude]="post[location][lng]"></sebm-google-map-marker>
         </sebm-google-map>
       </ion-col>
-    </ion-row>  -->
+    </ion-row>-->
        <h3 class="comment-title">Comments</h3>
         <div *ngFor="let comment of post.comments; let i = index">
           <hr>
@@ -77,21 +77,35 @@
       </ion-item>
     </ion-list>
     <ion-grid>
-      <ion-row>
-        <ion-col>
-          <button
-            ion-button
-            color="secondary"
-            block
-            type="submit"
-            [disabled]="!f.valid">
-            Add Comment
-          </button>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
+       <ion-row>
+           <ion-col>
+               <button
+                       ion-button
+                       color="secondary"
+                       block
+                       type="submit"
+                       [disabled]="!f.valid">
+                   Add Comment
+               </button>
+           </ion-col>
+       </ion-row>
+   </ion-grid>
   </form>
    </ion-card>
+
+    <ion-row>
+        <ion-col>
+            <button
+                    ion-button
+                    color="secondary"
+                    block
+                    type="DELETE"
+                    onClick="return confirm('Are you sure you want to delete?')"
+                    (click)="onDelete(post._id)">
+                DELETE
+            </button>
+        </ion-col>
+    </ion-row>
 </ion-content>
 
 

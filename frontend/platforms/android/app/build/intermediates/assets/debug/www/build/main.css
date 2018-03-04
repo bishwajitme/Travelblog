@@ -26155,3 +26155,8 @@ page-place sebm-google-map {
 page-set-location sebm-google-map {
   height: 250px;
 }
+
+page-show .comment-title {
+  font-size: 16;
+  font-weight: bold;
+}

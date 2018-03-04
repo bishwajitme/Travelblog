@@ -61,8 +61,8 @@ post: Posts[] = [];
     this.viewCtrl.dismiss();
   }
 
-  onDelete() {
-    this.placesService.deletePlace(this.id);
+  onDelete(id) {
+    this.postService.deletePost(id);
     this.onLeave();
   }
 }

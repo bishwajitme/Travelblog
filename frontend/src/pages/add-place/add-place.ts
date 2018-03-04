@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { NgForm } from "@angular/forms";
-import { ModalController, LoadingController, ToastController } from "ionic-angular";
+import { ModalController, LoadingController, ToastController, ViewController } from "ionic-angular";
 import { Geolocation } from '@ionic-native/geolocation';
 import { Camera } from '@ionic-native/camera';
-import { File, Entry, FileError } from '@ionic-native/file';
+import { File } from '@ionic-native/file';
 
 import { SetLocationPage } from "../set-location/set-location";
 import { Location } from "../../models/location";
@@ -36,7 +36,9 @@ export class AddPlacePage {
               private geolocation: Geolocation,
               private camera: Camera,
               private file: File,
-              private postService: Posts) {
+              private postService: Posts,
+              private viewCtrl: ViewController
+              ) {
   }
 
   onSubmit(form: NgForm) {
@@ -49,7 +51,12 @@ export class AddPlacePage {
     };
     console.log('post data: '+newPost);
     this.postService
-      .addPost(newPost);
+      .uploadImage(this.imageUrl, newPost).then(res => {
+        this.viewCtrl.dismiss({reload: true});
+    }, err => {
+        this.dismiss();
+    });
+
     form.reset();
     this.location = {
       lat: 40.7624324,
@@ -108,9 +115,10 @@ export class AddPlacePage {
 
   onTakePhoto() {
     this.camera.getPicture({
-      encodingType: this.camera.EncodingType.PNG,
-      correctOrientation: true,
-        quality:5
+        quality: 100,
+        destinationType: this.camera.DestinationType.FILE_URI,
+        saveToPhotoAlbum: false,
+        correctOrientation: true
     })
       .then(
         imageData => {
@@ -118,9 +126,22 @@ export class AddPlacePage {
           const currentName = imageData.replace(/^.*[\\\/]/, '');
           const path = imageData.replace(/[^\/]*$/, '');
           const newFileName = new Date().getUTCMilliseconds() + '.png';
-          this.baseImagePath = path;
+          this.baseImagePath = path + currentName;
           this.imageName = newFileName;
-          this.file.moveFile(path, currentName, cordova.file.dataDirectory, newFileName)
+
+         /* console.log(imageData);
+            this.postService.uploadImage(imageData, 'image').then(res => {
+                //var str = JSON.stringify(res.response, null, 2);
+                let imageFile = JSON.parse(res.response);
+                this.imageName = imageFile.image;
+                console.log(this.imageName);
+                console.log(res.response);
+            }, err => {
+                var str = JSON.stringify(err, null, 2);
+                console.log('err'+ str);
+            });
+*/
+        /*  this.file.moveFile(path, currentName, cordova.file.dataDirectory, newFileName)
                 .then(
               (data: Entry) => {
                 //this.imageUrl = normalizeURL(data.nativeURL);
@@ -141,7 +162,7 @@ export class AddPlacePage {
                 toast.present();
                 this.camera.cleanup();
               }
-            );
+            );*/
           //this.imageUrl = normalizeURL(this.imageUrl);
             this.imageUrl = imageData;
         }
@@ -157,4 +178,8 @@ export class AddPlacePage {
         }
       );
   }
+
+    dismiss() {
+        this.viewCtrl.dismiss();
+    }
 }
