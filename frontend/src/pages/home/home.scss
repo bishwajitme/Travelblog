@@ -1,3 +1,22 @@
 page-home {
 
+  .bg{
+    background: url('../assets/images/1_6.jpg') no-repeat center center fixed;
+    background-size: cover;
+  }
+
+  ion-card{
+    width: 200px;
+    padding: 10px 10px 20px 10px;
+    border: 1px solid #BFBFBF;
+    background-color: white;
+    box-shadow: 10px 10px 5px #aaaaaa;
+  }
+
+  .title{
+    color: #387EF5;
+  }
+
+
+
 }

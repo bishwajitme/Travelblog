@@ -2,23 +2,35 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>Add a Place</ion-title>
+    <ion-title>Add a Post</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
-<ion-content padding>
+<ion-content padding *ngIf="this.isLoggedIn">
   <form #f="ngForm" (ngSubmit)="onSubmit(f)">
     <ion-list>
+      <ion-item>
+       <br>
+      </ion-item>
       <ion-item>
         <ion-label fixed>Title</ion-label>
         <ion-input
           type="text"
-          placeholder="Beautiful church..."
+          placeholder="Amazing view..."
           name="title"
           ngModel
           required></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label fixed>Category</ion-label>
+        <ion-select name="category" ngModel>
+          <ion-option *ngFor="let option of categoris;"
+                      [value]="option.name">{{option.name}}
+          </ion-option>
+
+        </ion-select>
       </ion-item>
       <ion-item>
         <ion-label floating>Short Description</ion-label>
@@ -57,14 +69,14 @@
       </ion-row>
       <ion-row *ngIf="locationIsSet">
         <ion-col>
-          <sebm-google-map
+          <agm-map
             [latitude]="location.lat"
             [longitude]="location.lng"
             [zoom]="16">
-            <sebm-google-map-marker
+            <agm-marker
               [latitude]="location.lat"
-              [longitude]="location.lng"></sebm-google-map-marker>
-          </sebm-google-map>
+              [longitude]="location.lng"></agm-marker>
+          </agm-map>
         </ion-col>
       </ion-row>
       <ion-row>
@@ -93,6 +105,20 @@
       </ion-row>
       <ion-row>
         <ion-col>
+      <ion-list>
+        <ion-item>
+          <ion-label>Author</ion-label>
+          <ion-select name="author"
+                       ngModel>
+            <ion-option value="Bishwajit">Bishwajit</ion-option>
+            <ion-option value="Chris">Chris</ion-option>
+          </ion-select>
+        </ion-item>
+      </ion-list>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
           <button
             ion-button
             color="secondary"
@@ -104,5 +130,6 @@
         </ion-col>
       </ion-row>
     </ion-grid>
+
   </form>
 </ion-content>

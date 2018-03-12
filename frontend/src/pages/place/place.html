@@ -28,14 +28,14 @@
     </ion-row>
     <ion-row>
       <ion-col>
-        <sebm-google-map
+        <agm-map
           [latitude]="place.location.lat"
           [longitude]="place.location.lng"
           [zoom]="16">
-          <sebm-google-map-marker
+          <agm-marker
             [latitude]="place.location.lat"
-            [longitude]="place.location.lng"></sebm-google-map-marker>
-        </sebm-google-map>
+            [longitude]="place.location.lng"></agm-marker>
+        </agm-map>
       </ion-col>
     </ion-row>
     <ion-row>

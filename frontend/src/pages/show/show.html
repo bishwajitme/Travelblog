@@ -1,39 +1,64 @@
 <ion-header>
   <ion-navbar>
-    <ion-buttons end>
-      <button ion-button icon-only [navPush]="addPlacePage">
-        <ion-icon name="add"></ion-icon>
-      </button>
-    </ion-buttons>
     <ion-title>
-      Awesome Places
+      Single Post:  {{ post.title }}
     </ion-title>
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content padding class="bg">
    <ion-card-title>
         {{ post.title }}
       </ion-card-title>
-  <p class="meta">Posted in <a href="/categories/show/{{post.category}}">{{post.category}} </a>by {{post.author}} on <ion-datetime displayFormat="MM/DD/YYYY" [(ngModel)]="post.date"></ion-datetime></p>
+  <p class="meta">Posted in <a href="/categories/show/{{post.category}}">{{post.category}} </a> by {{post.author}} on <ion-datetime displayFormat="MM/DD/YYYY" [(ngModel)]="postDate"></ion-datetime></p>
   <ion-card>
     <img src="https://trablog.herokuapp.com/images/{{post.mainimage}}">
     <ion-card-content text-left>
-     
+
        <div class="discription" [innerHTML]="post.body" ></div>
 
-<!-- <ion-row >
+ <ion-row >
       <ion-col>
-        <sebm-google-map
-          [latitude]="post[location][lat]"
-          [longitude]="post[location][lng]"
-          [zoom]="16">
-          <sebm-google-map-marker
-                  [latitude]="post[location][lat]"
-                  [longitude]="post[location][lng]"></sebm-google-map-marker>
-        </sebm-google-map>
+
+          <agm-map
+                  [latitude]="lat"
+                  [longitude]="lng"
+                  [zoom]="16">
+              <agm-marker
+                      [latitude]="lat"
+                      [longitude]="lng"></agm-marker>
+          </agm-map>
       </ion-col>
-    </ion-row>-->
+    </ion-row>
+
+        <ion-grid *ngIf="weather">
+            <h2>Today's weather Information of this place</h2>
+
+            <ion-row>
+                <ion-col width-100>
+                    <ion-list>
+                        <ion-item>
+                            <strong>Temp: </strong> {{weather.temperature_string}}
+                        </ion-item>
+                        <ion-item>
+                            <strong>Relative Humidity: </strong> {{weather.relative_humidity}}
+                        </ion-item>
+                        <ion-item>
+                            <strong>Dewpoint: </strong> {{weather.dewpoint_string}}
+                        </ion-item>
+                        <ion-item>
+                            <strong>Visibility: </strong> {{weather.visibility_mi}}
+                        </ion-item>
+                        <ion-item>
+                            <strong>Heat Index: </strong> {{weather.heat_index_string}}
+                        </ion-item>
+                    </ion-list>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+
+
+
        <h3 class="comment-title">Comments</h3>
         <div *ngFor="let comment of post.comments; let i = index">
           <hr>
@@ -67,7 +92,7 @@
           ngModel
           required></ion-input>
       </ion-item>
-     
+
       <ion-item>
         <ion-label floating>Comment Text</ion-label>
         <ion-textarea
@@ -93,11 +118,11 @@
   </form>
    </ion-card>
 
-    <ion-row>
+    <ion-row *ngIf="this.isLoggedIn">
         <ion-col>
             <button
                     ion-button
-                    color="secondary"
+                    color="danger"
                     block
                     type="DELETE"
                     onClick="return confirm('Are you sure you want to delete?')"
@@ -106,8 +131,23 @@
             </button>
         </ion-col>
     </ion-row>
+    <ion-row>
+        <ion-col>
+            <button
+                    class="button"
+                    ion-button
+                    icon-right
+                    block
+                    padding-vertical
+                    color="primary"
+                    (click)="sharePost(post.title, post.mainimage, post._id)">
+                Share this
+                <ion-icon ios="ios-share" md="md-share"></ion-icon>
+            </button>
+        </ion-col>
+    </ion-row>
 </ion-content>
 
 
- 
- 
+
+

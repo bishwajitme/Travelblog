@@ -26148,15 +26148,87 @@ page-add-place sebm-google-map {
   height: 250px;
 }
 
+page-add-place agm-map {
+  height: 250px;
+}
+
+page-category .bg {
+  background: linear-gradient(to bottom, #cfecf0 0%, #ffffff 100%);
+}
+
+page-category h2 {
+  text-align: center;
+}
+
+page-contact .bg {
+  background: linear-gradient(to bottom, #cfecf0 0%, #ffffff 100%);
+}
+
+page-home .bg {
+  background: url("../assets/images/1_6.jpg") no-repeat center center fixed;
+  background-size: cover;
+}
+
+page-home ion-card {
+  width: 200px;
+  padding: 10px 10px 20px 10px;
+  border: 1px solid #BFBFBF;
+  background-color: white;
+  box-shadow: 10px 10px 5px #aaaaaa;
+}
+
+page-home .title {
+  color: #387EF5;
+}
+
+page-login h2 {
+  text-align: center;
+}
+
+page-login form {
+  padding: 10px 10px 20px 10px;
+  border: 1px solid #BFBFBF;
+  background-color: white;
+  box-shadow: 10px 10px 5px #aaaaaa;
+}
+
+page-login .bg {
+  background: linear-gradient(to bottom, #cfecf0 0%, #ffffff 100%);
+}
+
 page-place sebm-google-map {
   height: 250px;
+}
+
+page-place agm-map {
+  height: 250px;
+}
+
+page-register .bg {
+  background: linear-gradient(to bottom, #cfecf0 0%, #ffffff 100%);
+}
+
+page-register h2 {
+  text-align: center;
 }
 
 page-set-location sebm-google-map {
   height: 250px;
 }
 
+page-set-location agm-map {
+  height: 250px;
+}
+
 page-show .comment-title {
   font-size: 16;
   font-weight: bold;
+}
+
+page-show agm-map {
+  height: 250px;
+}
+
+page-show .bg {
+  background: linear-gradient(to bottom, #cfecf0 0%, #ffffff 100%);
 }

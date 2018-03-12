@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
 import { NgForm } from "@angular/forms";
-import { ModalController, LoadingController, ToastController, ViewController } from "ionic-angular";
+import {
+    ModalController, LoadingController, ToastController, ViewController, NavController,
+    Events
+} from "ionic-angular";
 import { Geolocation } from '@ionic-native/geolocation';
 import { Camera } from '@ionic-native/camera';
 import { File } from '@ionic-native/file';
@@ -9,6 +12,8 @@ import { SetLocationPage } from "../set-location/set-location";
 import { Location } from "../../models/location";
 import { PlacesService } from "../../services/places";
 import { Posts } from "../../services/post-service";
+import { Storage } from "@ionic/storage";
+//import {HomePage} from "../home/home";
 //import {normalizeURL} from 'ionic-angular';
 
 declare var cordova: any;
@@ -27,6 +32,8 @@ export class AddPlacePage {
   baseImagePath = '';
   imageName = '';
   post: Posts[] = [];
+  isLoggedIn: boolean = false;
+  categoris:any;
 
 
   constructor(private modalCtrl: ModalController,
@@ -36,23 +43,37 @@ export class AddPlacePage {
               private geolocation: Geolocation,
               private camera: Camera,
               private file: File,
+              private storage: Storage,
               private postService: Posts,
-              private viewCtrl: ViewController
+              private viewCtrl: ViewController,
+              private navCtrl: NavController,
+              public events: Events
               ) {
+
+      this.storage.get('token').then((val) => {
+          if(val!="" && val!= null){
+              this.isLoggedIn = true;
+          }
+      });
+      this.postService.getCategories().then((data) => {
+          this.categoris = data;
+          console.log(data);
+      });
   }
 
   onSubmit(form: NgForm) {
     let newPost = {
       title: form.value.title,
       body: form.value.body,
-      category: 'Europe',
+      category: form.value.category,
+      author:form.value.author,
       location:this.location
-
     };
     console.log('post data: '+newPost);
     this.postService
       .uploadImage(this.imageUrl, newPost).then(res => {
         this.viewCtrl.dismiss({reload: true});
+        this.goToHomePage();
     }, err => {
         this.dismiss();
     });
@@ -67,12 +88,17 @@ export class AddPlacePage {
 
     const toast = this.toastCtrl.create({
             message: 'Post added!',
-            duration: 2500
+            duration: 500
           });
           toast.present();
-    //this.navCtrl.pop();
-  }
 
+  }
+goToHomePage()
+{
+    this.events.publish('reloadPage1');
+    //this.navCtrl.pop();
+    //this.navCtrl.setRoot(HomePage);
+}
   onOpenMap() {
     const modal = this.modalCtrl.create(SetLocationPage,
       {location: this.location, isSet: this.locationIsSet});
@@ -115,7 +141,7 @@ export class AddPlacePage {
 
   onTakePhoto() {
     this.camera.getPicture({
-        quality: 100,
+        quality: 30,
         destinationType: this.camera.DestinationType.FILE_URI,
         saveToPhotoAlbum: false,
         correctOrientation: true
@@ -181,5 +207,6 @@ export class AddPlacePage {
 
     dismiss() {
         this.viewCtrl.dismiss();
+
     }
 }

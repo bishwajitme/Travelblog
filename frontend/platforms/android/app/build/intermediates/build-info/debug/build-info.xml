@@ -6,8 +6,8 @@
     density="xhdpi"
     format="10"
     plugin-version="3.0.0"
-    timestamp="1520159157884"
-    token="7324173528166436561"
+    timestamp="1520881434929"
+    token="-6812202188803354057"
     verifier="COLD_SWAP_REQUESTED" >
 
     <task
@@ -23,58 +23,58 @@
         name="verifier"
         duration="0" />
 
-    <artifact
-        location="/Users/bishwajithalder/ionic/travelblog/frontend/platforms/android/app/build/outputs/apk/debug/app-debug.apk"
-        type="SPLIT_MAIN" />
-
     <build
         build-mode="FULL"
-        timestamp="1520158893642"
+        timestamp="1520875256071"
         verifier="FULL_BUILD_REQUESTED" >
         <artifact
-            location="/Users/bishwajithalder/ionic/travelblog/frontend/platforms/android/app/build/outputs/apk/debug/app-debug.apk"
+            location="/Users/bishwajithalder/ionic/travelblog/frontend copy/platforms/android/app/build/outputs/apk/debug/app-debug.apk"
             type="SPLIT_MAIN" />
         <artifact
-            location="/Users/bishwajithalder/ionic/travelblog/frontend/platforms/android/app/build/intermediates/split-apk/debug/slices/slice_8.apk"
+            location="/Users/bishwajithalder/ionic/travelblog/frontend copy/platforms/android/app/build/intermediates/split-apk/debug/slices/slice_0.apk"
             type="SPLIT" />
         <artifact
-            location="/Users/bishwajithalder/ionic/travelblog/frontend/platforms/android/app/build/intermediates/split-apk/debug/slices/slice_3.apk"
+            location="/Users/bishwajithalder/ionic/travelblog/frontend copy/platforms/android/app/build/intermediates/split-apk/debug/slices/slice_1.apk"
             type="SPLIT" />
         <artifact
-            location="/Users/bishwajithalder/ionic/travelblog/frontend/platforms/android/app/build/intermediates/split-apk/debug/dep/dependencies.apk"
+            location="/Users/bishwajithalder/ionic/travelblog/frontend copy/platforms/android/app/build/intermediates/split-apk/debug/dep/dependencies.apk"
             type="SPLIT" />
         <artifact
-            location="/Users/bishwajithalder/ionic/travelblog/frontend/platforms/android/app/build/intermediates/split-apk/debug/slices/slice_2.apk"
+            location="/Users/bishwajithalder/ionic/travelblog/frontend copy/platforms/android/app/build/intermediates/split-apk/debug/slices/slice_3.apk"
             type="SPLIT" />
         <artifact
-            location="/Users/bishwajithalder/ionic/travelblog/frontend/platforms/android/app/build/intermediates/split-apk/debug/slices/slice_1.apk"
+            location="/Users/bishwajithalder/ionic/travelblog/frontend copy/platforms/android/app/build/intermediates/split-apk/debug/slices/slice_8.apk"
             type="SPLIT" />
         <artifact
-            location="/Users/bishwajithalder/ionic/travelblog/frontend/platforms/android/app/build/intermediates/split-apk/debug/slices/slice_0.apk"
+            location="/Users/bishwajithalder/ionic/travelblog/frontend copy/platforms/android/app/build/intermediates/split-apk/debug/slices/slice_9.apk"
             type="SPLIT" />
         <artifact
-            location="/Users/bishwajithalder/ionic/travelblog/frontend/platforms/android/app/build/intermediates/split-apk/debug/slices/slice_5.apk"
+            location="/Users/bishwajithalder/ionic/travelblog/frontend copy/platforms/android/app/build/intermediates/split-apk/debug/slices/slice_2.apk"
             type="SPLIT" />
         <artifact
-            location="/Users/bishwajithalder/ionic/travelblog/frontend/platforms/android/app/build/intermediates/split-apk/debug/slices/slice_4.apk"
+            location="/Users/bishwajithalder/ionic/travelblog/frontend copy/platforms/android/app/build/intermediates/split-apk/debug/slices/slice_7.apk"
             type="SPLIT" />
         <artifact
-            location="/Users/bishwajithalder/ionic/travelblog/frontend/platforms/android/app/build/intermediates/split-apk/debug/slices/slice_9.apk"
+            location="/Users/bishwajithalder/ionic/travelblog/frontend copy/platforms/android/app/build/intermediates/split-apk/debug/slices/slice_4.apk"
             type="SPLIT" />
         <artifact
-            location="/Users/bishwajithalder/ionic/travelblog/frontend/platforms/android/app/build/intermediates/split-apk/debug/slices/slice_6.apk"
+            location="/Users/bishwajithalder/ionic/travelblog/frontend copy/platforms/android/app/build/intermediates/split-apk/debug/slices/slice_5.apk"
             type="SPLIT" />
         <artifact
-            location="/Users/bishwajithalder/ionic/travelblog/frontend/platforms/android/app/build/intermediates/split-apk/debug/slices/slice_7.apk"
+            location="/Users/bishwajithalder/ionic/travelblog/frontend copy/platforms/android/app/build/intermediates/split-apk/debug/slices/slice_6.apk"
             type="SPLIT" />
     </build>
     <build
         build-mode="COLD"
-        timestamp="1520159157884"
+        timestamp="1520881319558"
         verifier="COLD_SWAP_REQUESTED" >
         <artifact
-            location="/Users/bishwajithalder/ionic/travelblog/frontend/platforms/android/app/build/outputs/apk/debug/app-debug.apk"
+            location="/Users/bishwajithalder/ionic/travelblog/frontend copy/platforms/android/app/build/outputs/apk/debug/app-debug.apk"
             type="SPLIT_MAIN" />
     </build>
+    <build
+        build-mode="COLD"
+        timestamp="1520881434929"
+        verifier="COLD_SWAP_REQUESTED" />
 
 </instant-run>

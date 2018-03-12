@@ -8,10 +8,13 @@ export class Posts {
  
   data: any;
   singledata:any;
+  catData: any;
+  newCatData:any;
 
   constructor(public http: Http, private transfer: FileTransfer) {
     this.data = null;
     this.singledata= null;
+    this.catData = null;
   }
  
   getposts(){
@@ -50,6 +53,26 @@ export class Posts {
  
   }
 
+
+    getCategories(){
+
+        if (this.catData) {
+            return Promise.resolve(this.catData);
+        }
+
+        return new Promise(resolve => {
+
+            this.http.get('https://trablog.herokuapp.com/categories/api/categories')
+                .map(res => res.json())
+                .subscribe(data => {
+                    this.catData = data;
+                    resolve(this.catData);
+                });
+        });
+
+    }
+
+
  
   addComment(newComment){
  
@@ -62,6 +85,21 @@ export class Posts {
       });
  
   }
+
+    addContact(newContact){
+
+        let headers = new Headers();
+        headers.append('Content-Type', 'application/json');
+        console.log(newContact);
+        this.http.post('https://trablog.herokuapp.com/users/contact', JSON.stringify(newContact), {headers: headers})
+            .subscribe(res => {
+                console.log(res.json());
+            });
+
+    }
+
+
+
     uploadImage(img, newPost) {
 
         // Destination URL
@@ -98,13 +136,25 @@ export class Posts {
       });
  
   }
+
+    addCategory(newCat){
+
+        let headers = new Headers();
+        headers.append('Content-Type', 'application/json');
+        console.log(newCat);
+        this.http.post('https://trablog.herokuapp.com/categories/api/add', JSON.stringify(newCat), {headers: headers})
+            .subscribe(res => {
+                console.log(res.json());
+
+            });
+    }
  
   deletePost(id){
  
     this.http.delete('https://trablog.herokuapp.com/posts/api/delete/' + id).subscribe((res) => {
       console.log(res.json());
-    });   
- 
+    });
+      return 'deleted';
   }
  
 }

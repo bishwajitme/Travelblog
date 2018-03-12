@@ -1,0 +1,56 @@
+
+<ion-header>
+
+  <ion-navbar>
+    <ion-buttons left>
+      <button ion-button menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title>Add a Category</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content padding class="bg" *ngIf="this.isLoggedIn">
+  <form #f="ngForm" (ngSubmit)="onSubmit(f)">
+    <ion-list>
+      <ion-item>
+        <h2>Type the name of the category</h2>
+      </ion-item>
+
+      <ion-item>
+        <ion-label floating>Category Name</ion-label>
+        <ion-input
+                type="text"
+                placeholder=""
+                name="name"
+                ngModel
+                required></ion-input>
+      </ion-item>
+
+    </ion-list>
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <button
+                  ion-button
+                  color="secondary"
+                  block
+                  type="submit"
+                  [disabled]="!f.valid"
+                  (click)="presentAlert()">
+            Add this Category
+          </button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+  </form>
+</ion-content>
+
+<ion-content padding class="bg" *ngIf="this.isNotLoggedIn">
+  <br>
+  <h2 padding>You must logged in as an admin to add category</h2>
+
+</ion-content>

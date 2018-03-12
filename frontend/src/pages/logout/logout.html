@@ -1,0 +1,22 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-buttons end>
+      <button ion-button icon-only [navPush]="addPlacePage">
+        <ion-icon name="add"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title>
+      World Party Travel
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content padding>
+
+  <button *ngIf="isLoggedIn" ion-button (click)="presentAlert()" (click)="logout()">
+   Logout <ion-icon name="log-out"></ion-icon>
+  </button>
+  <ion-title>Home</ion-title>
+</ion-content>
